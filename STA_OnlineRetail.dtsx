@@ -1,0 +1,618 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="4/14/2025 4:51:54 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="GALLAS-NG-WS"
+  DTS:CreatorName="GALLAS-NG-WS\gallas"
+  DTS:DTSID="{9F9D4257-62DE-4CE3-920C-AA3923F1FAFF}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5685.0"
+  DTS:LocaleID="2057"
+  DTS:ObjectName="STA_OnlineRetail"
+  DTS:PackageType="5"
+  DTS:VersionBuild="6"
+  DTS:VersionGUID="{987F1BD1-4CC8-41CE-951F-F2F7A8D41919}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\DFT - Load STA_OnlineRetail"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{28D8E873-18EE-4D24-9A49-BC877D9521D5}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DFT - Load STA_OnlineRetail"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\DFT - Load STA_OnlineRetail\OLE DST STA_OnlineRetail"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DST STA_OnlineRetail"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[STA_OnlineRetail]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT - Load STA_OnlineRetail\OLE DST STA_OnlineRetail.Connections[OleDbConnection]"
+                  connectionManagerID="{50CDB26F-8188-42B8-A099-11883CD96289}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[localhost.DEP_STA]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DFT - Load STA_OnlineRetail\OLE DST STA_OnlineRetail.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT - Load STA_OnlineRetail\OLE DST STA_OnlineRetail.Inputs[OLE DB Destination Input].Columns[InvoiceNo]"
+                      cachedDataType="r8"
+                      cachedName="InvoiceNo"
+                      externalMetadataColumnId="Package\DFT - Load STA_OnlineRetail\OLE DST STA_OnlineRetail.Inputs[OLE DB Destination Input].ExternalColumns[InvoiceNo]"
+                      lineageId="Package\DFT - Load STA_OnlineRetail\SRC Excel OnlineRetail.Outputs[Excel Source Output].Columns[InvoiceNo]" />
+                    <inputColumn
+                      refId="Package\DFT - Load STA_OnlineRetail\OLE DST STA_OnlineRetail.Inputs[OLE DB Destination Input].Columns[StockCode]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="StockCode"
+                      externalMetadataColumnId="Package\DFT - Load STA_OnlineRetail\OLE DST STA_OnlineRetail.Inputs[OLE DB Destination Input].ExternalColumns[StockCode]"
+                      lineageId="Package\DFT - Load STA_OnlineRetail\SRC Excel OnlineRetail.Outputs[Excel Source Output].Columns[StockCode]" />
+                    <inputColumn
+                      refId="Package\DFT - Load STA_OnlineRetail\OLE DST STA_OnlineRetail.Inputs[OLE DB Destination Input].Columns[Description]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Description"
+                      externalMetadataColumnId="Package\DFT - Load STA_OnlineRetail\OLE DST STA_OnlineRetail.Inputs[OLE DB Destination Input].ExternalColumns[Description]"
+                      lineageId="Package\DFT - Load STA_OnlineRetail\SRC Excel OnlineRetail.Outputs[Excel Source Output].Columns[Description]" />
+                    <inputColumn
+                      refId="Package\DFT - Load STA_OnlineRetail\OLE DST STA_OnlineRetail.Inputs[OLE DB Destination Input].Columns[Quantity]"
+                      cachedDataType="r8"
+                      cachedName="Quantity"
+                      externalMetadataColumnId="Package\DFT - Load STA_OnlineRetail\OLE DST STA_OnlineRetail.Inputs[OLE DB Destination Input].ExternalColumns[Quantity]"
+                      lineageId="Package\DFT - Load STA_OnlineRetail\SRC Excel OnlineRetail.Outputs[Excel Source Output].Columns[Quantity]" />
+                    <inputColumn
+                      refId="Package\DFT - Load STA_OnlineRetail\OLE DST STA_OnlineRetail.Inputs[OLE DB Destination Input].Columns[InvoiceDate]"
+                      cachedDataType="date"
+                      cachedName="InvoiceDate"
+                      externalMetadataColumnId="Package\DFT - Load STA_OnlineRetail\OLE DST STA_OnlineRetail.Inputs[OLE DB Destination Input].ExternalColumns[InvoiceDate]"
+                      lineageId="Package\DFT - Load STA_OnlineRetail\SRC Excel OnlineRetail.Outputs[Excel Source Output].Columns[InvoiceDate]" />
+                    <inputColumn
+                      refId="Package\DFT - Load STA_OnlineRetail\OLE DST STA_OnlineRetail.Inputs[OLE DB Destination Input].Columns[UnitPrice]"
+                      cachedDataType="r8"
+                      cachedName="UnitPrice"
+                      externalMetadataColumnId="Package\DFT - Load STA_OnlineRetail\OLE DST STA_OnlineRetail.Inputs[OLE DB Destination Input].ExternalColumns[UnitPrice]"
+                      lineageId="Package\DFT - Load STA_OnlineRetail\SRC Excel OnlineRetail.Outputs[Excel Source Output].Columns[UnitPrice]" />
+                    <inputColumn
+                      refId="Package\DFT - Load STA_OnlineRetail\OLE DST STA_OnlineRetail.Inputs[OLE DB Destination Input].Columns[CustomerID]"
+                      cachedDataType="r8"
+                      cachedName="CustomerID"
+                      externalMetadataColumnId="Package\DFT - Load STA_OnlineRetail\OLE DST STA_OnlineRetail.Inputs[OLE DB Destination Input].ExternalColumns[CustomerID]"
+                      lineageId="Package\DFT - Load STA_OnlineRetail\SRC Excel OnlineRetail.Outputs[Excel Source Output].Columns[CustomerID]" />
+                    <inputColumn
+                      refId="Package\DFT - Load STA_OnlineRetail\OLE DST STA_OnlineRetail.Inputs[OLE DB Destination Input].Columns[Country]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Country"
+                      externalMetadataColumnId="Package\DFT - Load STA_OnlineRetail\OLE DST STA_OnlineRetail.Inputs[OLE DB Destination Input].ExternalColumns[Country]"
+                      lineageId="Package\DFT - Load STA_OnlineRetail\SRC Excel OnlineRetail.Outputs[Excel Source Output].Columns[Country]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load STA_OnlineRetail\OLE DST STA_OnlineRetail.Inputs[OLE DB Destination Input].ExternalColumns[InvoiceNo]"
+                      dataType="r8"
+                      name="InvoiceNo" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load STA_OnlineRetail\OLE DST STA_OnlineRetail.Inputs[OLE DB Destination Input].ExternalColumns[StockCode]"
+                      dataType="wstr"
+                      length="10"
+                      name="StockCode" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load STA_OnlineRetail\OLE DST STA_OnlineRetail.Inputs[OLE DB Destination Input].ExternalColumns[Description]"
+                      dataType="wstr"
+                      length="255"
+                      name="Description" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load STA_OnlineRetail\OLE DST STA_OnlineRetail.Inputs[OLE DB Destination Input].ExternalColumns[Quantity]"
+                      dataType="r8"
+                      name="Quantity" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load STA_OnlineRetail\OLE DST STA_OnlineRetail.Inputs[OLE DB Destination Input].ExternalColumns[InvoiceDate]"
+                      dataType="dbTimeStamp"
+                      name="InvoiceDate" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load STA_OnlineRetail\OLE DST STA_OnlineRetail.Inputs[OLE DB Destination Input].ExternalColumns[UnitPrice]"
+                      dataType="r8"
+                      name="UnitPrice" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load STA_OnlineRetail\OLE DST STA_OnlineRetail.Inputs[OLE DB Destination Input].ExternalColumns[CustomerID]"
+                      dataType="r8"
+                      name="CustomerID" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load STA_OnlineRetail\OLE DST STA_OnlineRetail.Inputs[OLE DB Destination Input].ExternalColumns[Country]"
+                      dataType="wstr"
+                      length="20"
+                      name="Country" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT - Load STA_OnlineRetail\OLE DST STA_OnlineRetail.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\DFT - Load STA_OnlineRetail\OLE DST STA_OnlineRetail.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT - Load STA_OnlineRetail\OLE DST STA_OnlineRetail.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT - Load STA_OnlineRetail\OLE DST STA_OnlineRetail.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT - Load STA_OnlineRetail\OLE DST STA_OnlineRetail.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT - Load STA_OnlineRetail\OLE DST STA_OnlineRetail.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT - Load STA_OnlineRetail\SRC Excel OnlineRetail"
+              componentClassID="Microsoft.ExcelSource"
+              contactInfo="Excel Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Excel Source"
+              name="SRC Excel OnlineRetail"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">'Online Retail$'</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mapping from parameters in the SQL command to variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT - Load STA_OnlineRetail\SRC Excel OnlineRetail.Connections[OleDbConnection]"
+                  connectionManagerID="{017EBE81-16CF-4210-9C1A-F36F144B927A}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Gestionnaire de connexions Excel]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\DFT - Load STA_OnlineRetail\SRC Excel OnlineRetail.Outputs[Excel Source Output]"
+                  name="Excel Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT - Load STA_OnlineRetail\SRC Excel OnlineRetail.Outputs[Excel Source Output].Columns[InvoiceNo]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load STA_OnlineRetail\SRC Excel OnlineRetail.Outputs[Excel Source Output].ExternalColumns[InvoiceNo]"
+                      lineageId="Package\DFT - Load STA_OnlineRetail\SRC Excel OnlineRetail.Outputs[Excel Source Output].Columns[InvoiceNo]"
+                      name="InvoiceNo"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Load STA_OnlineRetail\SRC Excel OnlineRetail.Outputs[Excel Source Output].Columns[StockCode]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load STA_OnlineRetail\SRC Excel OnlineRetail.Outputs[Excel Source Output].ExternalColumns[StockCode]"
+                      length="255"
+                      lineageId="Package\DFT - Load STA_OnlineRetail\SRC Excel OnlineRetail.Outputs[Excel Source Output].Columns[StockCode]"
+                      name="StockCode"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Load STA_OnlineRetail\SRC Excel OnlineRetail.Outputs[Excel Source Output].Columns[Description]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load STA_OnlineRetail\SRC Excel OnlineRetail.Outputs[Excel Source Output].ExternalColumns[Description]"
+                      length="255"
+                      lineageId="Package\DFT - Load STA_OnlineRetail\SRC Excel OnlineRetail.Outputs[Excel Source Output].Columns[Description]"
+                      name="Description"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Load STA_OnlineRetail\SRC Excel OnlineRetail.Outputs[Excel Source Output].Columns[Quantity]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load STA_OnlineRetail\SRC Excel OnlineRetail.Outputs[Excel Source Output].ExternalColumns[Quantity]"
+                      lineageId="Package\DFT - Load STA_OnlineRetail\SRC Excel OnlineRetail.Outputs[Excel Source Output].Columns[Quantity]"
+                      name="Quantity"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Load STA_OnlineRetail\SRC Excel OnlineRetail.Outputs[Excel Source Output].Columns[InvoiceDate]"
+                      dataType="date"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load STA_OnlineRetail\SRC Excel OnlineRetail.Outputs[Excel Source Output].ExternalColumns[InvoiceDate]"
+                      lineageId="Package\DFT - Load STA_OnlineRetail\SRC Excel OnlineRetail.Outputs[Excel Source Output].Columns[InvoiceDate]"
+                      name="InvoiceDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Load STA_OnlineRetail\SRC Excel OnlineRetail.Outputs[Excel Source Output].Columns[UnitPrice]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load STA_OnlineRetail\SRC Excel OnlineRetail.Outputs[Excel Source Output].ExternalColumns[UnitPrice]"
+                      lineageId="Package\DFT - Load STA_OnlineRetail\SRC Excel OnlineRetail.Outputs[Excel Source Output].Columns[UnitPrice]"
+                      name="UnitPrice"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Load STA_OnlineRetail\SRC Excel OnlineRetail.Outputs[Excel Source Output].Columns[CustomerID]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load STA_OnlineRetail\SRC Excel OnlineRetail.Outputs[Excel Source Output].ExternalColumns[CustomerID]"
+                      lineageId="Package\DFT - Load STA_OnlineRetail\SRC Excel OnlineRetail.Outputs[Excel Source Output].Columns[CustomerID]"
+                      name="CustomerID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Load STA_OnlineRetail\SRC Excel OnlineRetail.Outputs[Excel Source Output].Columns[Country]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Load STA_OnlineRetail\SRC Excel OnlineRetail.Outputs[Excel Source Output].ExternalColumns[Country]"
+                      length="255"
+                      lineageId="Package\DFT - Load STA_OnlineRetail\SRC Excel OnlineRetail.Outputs[Excel Source Output].Columns[Country]"
+                      name="Country"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load STA_OnlineRetail\SRC Excel OnlineRetail.Outputs[Excel Source Output].ExternalColumns[InvoiceNo]"
+                      dataType="r8"
+                      name="InvoiceNo" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load STA_OnlineRetail\SRC Excel OnlineRetail.Outputs[Excel Source Output].ExternalColumns[StockCode]"
+                      dataType="wstr"
+                      length="255"
+                      name="StockCode" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load STA_OnlineRetail\SRC Excel OnlineRetail.Outputs[Excel Source Output].ExternalColumns[Description]"
+                      dataType="wstr"
+                      length="255"
+                      name="Description" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load STA_OnlineRetail\SRC Excel OnlineRetail.Outputs[Excel Source Output].ExternalColumns[Quantity]"
+                      dataType="r8"
+                      name="Quantity" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load STA_OnlineRetail\SRC Excel OnlineRetail.Outputs[Excel Source Output].ExternalColumns[InvoiceDate]"
+                      dataType="date"
+                      name="InvoiceDate" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load STA_OnlineRetail\SRC Excel OnlineRetail.Outputs[Excel Source Output].ExternalColumns[UnitPrice]"
+                      dataType="r8"
+                      name="UnitPrice" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load STA_OnlineRetail\SRC Excel OnlineRetail.Outputs[Excel Source Output].ExternalColumns[CustomerID]"
+                      dataType="r8"
+                      name="CustomerID" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Load STA_OnlineRetail\SRC Excel OnlineRetail.Outputs[Excel Source Output].ExternalColumns[Country]"
+                      dataType="wstr"
+                      length="255"
+                      name="Country" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\DFT - Load STA_OnlineRetail\SRC Excel OnlineRetail.Outputs[Excel Source Error Output]"
+                  isErrorOut="true"
+                  name="Excel Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT - Load STA_OnlineRetail\SRC Excel OnlineRetail.Outputs[Excel Source Error Output].Columns[InvoiceNo]"
+                      dataType="r8"
+                      lineageId="Package\DFT - Load STA_OnlineRetail\SRC Excel OnlineRetail.Outputs[Excel Source Error Output].Columns[InvoiceNo]"
+                      name="InvoiceNo" />
+                    <outputColumn
+                      refId="Package\DFT - Load STA_OnlineRetail\SRC Excel OnlineRetail.Outputs[Excel Source Error Output].Columns[StockCode]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\DFT - Load STA_OnlineRetail\SRC Excel OnlineRetail.Outputs[Excel Source Error Output].Columns[StockCode]"
+                      name="StockCode" />
+                    <outputColumn
+                      refId="Package\DFT - Load STA_OnlineRetail\SRC Excel OnlineRetail.Outputs[Excel Source Error Output].Columns[Description]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\DFT - Load STA_OnlineRetail\SRC Excel OnlineRetail.Outputs[Excel Source Error Output].Columns[Description]"
+                      name="Description" />
+                    <outputColumn
+                      refId="Package\DFT - Load STA_OnlineRetail\SRC Excel OnlineRetail.Outputs[Excel Source Error Output].Columns[Quantity]"
+                      dataType="r8"
+                      lineageId="Package\DFT - Load STA_OnlineRetail\SRC Excel OnlineRetail.Outputs[Excel Source Error Output].Columns[Quantity]"
+                      name="Quantity" />
+                    <outputColumn
+                      refId="Package\DFT - Load STA_OnlineRetail\SRC Excel OnlineRetail.Outputs[Excel Source Error Output].Columns[InvoiceDate]"
+                      dataType="date"
+                      lineageId="Package\DFT - Load STA_OnlineRetail\SRC Excel OnlineRetail.Outputs[Excel Source Error Output].Columns[InvoiceDate]"
+                      name="InvoiceDate" />
+                    <outputColumn
+                      refId="Package\DFT - Load STA_OnlineRetail\SRC Excel OnlineRetail.Outputs[Excel Source Error Output].Columns[UnitPrice]"
+                      dataType="r8"
+                      lineageId="Package\DFT - Load STA_OnlineRetail\SRC Excel OnlineRetail.Outputs[Excel Source Error Output].Columns[UnitPrice]"
+                      name="UnitPrice" />
+                    <outputColumn
+                      refId="Package\DFT - Load STA_OnlineRetail\SRC Excel OnlineRetail.Outputs[Excel Source Error Output].Columns[CustomerID]"
+                      dataType="r8"
+                      lineageId="Package\DFT - Load STA_OnlineRetail\SRC Excel OnlineRetail.Outputs[Excel Source Error Output].Columns[CustomerID]"
+                      name="CustomerID" />
+                    <outputColumn
+                      refId="Package\DFT - Load STA_OnlineRetail\SRC Excel OnlineRetail.Outputs[Excel Source Error Output].Columns[Country]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\DFT - Load STA_OnlineRetail\SRC Excel OnlineRetail.Outputs[Excel Source Error Output].Columns[Country]"
+                      name="Country" />
+                    <outputColumn
+                      refId="Package\DFT - Load STA_OnlineRetail\SRC Excel OnlineRetail.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT - Load STA_OnlineRetail\SRC Excel OnlineRetail.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT - Load STA_OnlineRetail\SRC Excel OnlineRetail.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT - Load STA_OnlineRetail\SRC Excel OnlineRetail.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\DFT - Load STA_OnlineRetail.Paths[Excel Source Output]"
+              endId="Package\DFT - Load STA_OnlineRetail\OLE DST STA_OnlineRetail.Inputs[OLE DB Destination Input]"
+              name="Excel Source Output"
+              startId="Package\DFT - Load STA_OnlineRetail\SRC Excel OnlineRetail.Outputs[Excel Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Truncate - STA_OnlineRetail"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tâche d'exécution de requêtes SQL"
+      DTS:DTSID="{901AD21B-FF9A-4F45-8A7F-D104071D7B94}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Truncate - STA_OnlineRetail"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{50CDB26F-8188-42B8-A099-11883CD96289}"
+          SQLTask:BypassPrepare="False"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE dbo.STA_OnlineRetail&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Contrainte]"
+      DTS:CreationName=""
+      DTS:DTSID="{2B04A46C-C350-427B-B917-D325E338B74B}"
+      DTS:From="Package\Truncate - STA_OnlineRetail"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Contrainte"
+      DTS:To="Package\DFT - Load STA_OnlineRetail" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Cette section CDATA contient des informations sur la disposition du package. Elle comprend des informations telles que les coordonnées (x,y), la largeur et la hauteur.-->
+<!--Si vous modifiez manuellement cette section et commettez une erreur, vous pouvez la supprimer. -->
+<!--Le package pourra toujours se charger normalement, mais les informations de disposition précédente seront perdues et le concepteur réorganisera automatiquement les éléments sur l'aire de conception.-->
+<Objects
+  Version="8">
+  <!--Chaque nœud ci-dessous contiendra des propriétés qui n'affectent pas le comportement d'exécution.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="221.333333333334,42.6666666666667"
+          Id="Package\DFT - Load STA_OnlineRetail"
+          TopLeft="89.9999959766868,157.368419324757" />
+        <NodeLayout
+          Size="216,42.6666666666667"
+          Id="Package\Truncate - STA_OnlineRetail"
+          TopLeft="96.2499956972898,42.4210521658041" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Contrainte]"
+          TopLeft="202.458329170322,85.0877188324708">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,72.2807004922863"
+              Start="0,0"
+              End="0,64.7807004922863">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,64.7807004922863" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\DFT - Load STA_OnlineRetail">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="213.333333333334,42.6666666666667"
+          Id="Package\DFT - Load STA_OnlineRetail\OLE DST STA_OnlineRetail"
+          TopLeft="145.624993490055,281.894733746957" />
+        <NodeLayout
+          Size="192,42.6666666666667"
+          Id="Package\DFT - Load STA_OnlineRetail\SRC Excel OnlineRetail"
+          TopLeft="143.124993601814,149.157893099118" />
+        <EdgeLayout
+          Id="Package\DFT - Load STA_OnlineRetail.Paths[Excel Source Output]"
+          TopLeft="239.124993601814,191.824559765785">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="13.1666665549081,90.0701739811721"
+              Start="0,0"
+              End="13.1666665549081,82.5701739811721">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,41.0350869905861" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,41.0350869905861"
+                    Point2="0,45.0350869905861"
+                    Point3="4,45.0350869905861" />
+                  <mssgle:LineSegment
+                    End="9.16666655490812,45.0350869905861" />
+                  <mssgle:CubicBezierSegment
+                    Point1="9.16666655490812,45.0350869905861"
+                    Point2="13.1666665549081,45.0350869905861"
+                    Point3="13.1666665549081,49.0350869905861" />
+                  <mssgle:LineSegment
+                    End="13.1666665549081,82.5701739811721" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT - Load STA_OnlineRetail\OLE DST STA_OnlineRetail">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT - Load STA_OnlineRetail\SRC Excel OnlineRetail">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

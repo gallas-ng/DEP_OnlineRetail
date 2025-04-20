@@ -1,0 +1,2095 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="4/14/2025 5:05:57 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="GALLAS-NG-WS"
+  DTS:CreatorName="GALLAS-NG-WS\gallas"
+  DTS:DTSID="{D3D82A3A-3FD5-440A-82D7-303A4B48D40B}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5685.0"
+  DTS:LocaleID="2057"
+  DTS:ObjectName="Package1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="31"
+  DTS:VersionGUID="{A7A37FBF-4E41-40F7-8114-CCE1D4FBD28E}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\DFT Load ODS_OnlineRetail"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{B121A262-3005-4D24-85CE-CB76E221E806}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DFT Load ODS_OnlineRetail"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\DFT Load ODS_OnlineRetail\CDS - Non Null CustomerID"
+              componentClassID="Microsoft.ConditionalSplit"
+              contactInfo="Conditional Split;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Routes data rows to different outputs depending on the content of the data. Use conditions (SSIS expressions) to specify which rows are routed. For example, separate records that need to be cleaned from those that are ready to be loaded or route only a subset of records."
+              name="CDS - Non Null CustomerID"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\DFT Load ODS_OnlineRetail\CDS - Non Null CustomerID.Inputs[Conditional Split Input]"
+                  description="Input to the Conditional Split Transformation"
+                  name="Conditional Split Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\CDS - Non Null CustomerID.Inputs[Conditional Split Input].Columns[Quantity]"
+                      cachedDataType="r8"
+                      cachedName="Quantity"
+                      lineageId="Package\DFT Load ODS_OnlineRetail\OLE_SRC - STA_OnlineRetail.Outputs[OLE DB Source Output].Columns[Quantity]" />
+                    <inputColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\CDS - Non Null CustomerID.Inputs[Conditional Split Input].Columns[UnitPrice]"
+                      cachedDataType="r8"
+                      cachedName="UnitPrice"
+                      lineageId="Package\DFT Load ODS_OnlineRetail\OLE_SRC - STA_OnlineRetail.Outputs[OLE DB Source Output].Columns[UnitPrice]" />
+                    <inputColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\CDS - Non Null CustomerID.Inputs[Conditional Split Input].Columns[CustomerID]"
+                      cachedDataType="r8"
+                      cachedName="CustomerID"
+                      lineageId="Package\DFT Load ODS_OnlineRetail\OLE_SRC - STA_OnlineRetail.Outputs[OLE DB Source Output].Columns[CustomerID]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT Load ODS_OnlineRetail\CDS - Non Null CustomerID.Outputs[Remove Null CustID]"
+                  description="Output 1 of the Conditional Split Transformation"
+                  errorOrTruncationOperation="Computation"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Remove Null CustID"
+                  synchronousInputId="Package\DFT Load ODS_OnlineRetail\CDS - Non Null CustomerID.Inputs[Conditional Split Input]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                      name="Expression">![ISNULL](#{Package\DFT Load ODS_OnlineRetail\OLE_SRC - STA_OnlineRetail.Outputs[OLE DB Source Output].Columns[CustomerID]}) &amp;&amp; #{Package\DFT Load ODS_OnlineRetail\OLE_SRC - STA_OnlineRetail.Outputs[OLE DB Source Output].Columns[Quantity]} &gt; 0 &amp;&amp; #{Package\DFT Load ODS_OnlineRetail\OLE_SRC - STA_OnlineRetail.Outputs[OLE DB Source Output].Columns[UnitPrice]} &gt; 0</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the friendly version of the expression. This expression version uses column names."
+                      expressionType="Notify"
+                      name="FriendlyExpression">!ISNULL(CustomerID) &amp;&amp; Quantity &gt; 0 &amp;&amp; UnitPrice &gt; 0</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                      name="EvaluationOrder">0</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT Load ODS_OnlineRetail\CDS - Non Null CustomerID.Outputs[Conditional Split Default Output]"
+                  description="Default Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  name="Conditional Split Default Output"
+                  synchronousInputId="Package\DFT Load ODS_OnlineRetail\CDS - Non Null CustomerID.Inputs[Conditional Split Input]">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      name="IsDefaultOut">true</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT Load ODS_OnlineRetail\CDS - Non Null CustomerID.Outputs[Conditional Split Error Output]"
+                  description="Error Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Conditional Split Error Output"
+                  synchronousInputId="Package\DFT Load ODS_OnlineRetail\CDS - Non Null CustomerID.Inputs[Conditional Split Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\CDS - Non Null CustomerID.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT Load ODS_OnlineRetail\CDS - Non Null CustomerID.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\CDS - Non Null CustomerID.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT Load ODS_OnlineRetail\CDS - Non Null CustomerID.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT Load ODS_OnlineRetail\DCNV - CustmerID to INT"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="DCNV - CustmerID to INT"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\DFT Load ODS_OnlineRetail\DCNV - CustmerID to INT.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\DCNV - CustmerID to INT.Inputs[Data Conversion Input].Columns[CustomerID]"
+                      cachedDataType="r8"
+                      cachedName="CustomerID"
+                      lineageId="Package\DFT Load ODS_OnlineRetail\OLE_SRC - STA_OnlineRetail.Outputs[OLE DB Source Output].Columns[CustomerID]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT Load ODS_OnlineRetail\DCNV - CustmerID to INT.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\DFT Load ODS_OnlineRetail\DCNV - CustmerID to INT.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\DCNV - CustmerID to INT.Outputs[Data Conversion Output].Columns[CustomerID_DCNV]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="RedirectRow"
+                      lineageId="Package\DFT Load ODS_OnlineRetail\DCNV - CustmerID to INT.Outputs[Data Conversion Output].Columns[CustomerID_DCNV]"
+                      name="CustomerID_DCNV"
+                      truncationRowDisposition="RedirectRow">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\DFT Load ODS_OnlineRetail\OLE_SRC - STA_OnlineRetail.Outputs[OLE DB Source Output].Columns[CustomerID]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT Load ODS_OnlineRetail\DCNV - CustmerID to INT.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\DFT Load ODS_OnlineRetail\DCNV - CustmerID to INT.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\DCNV - CustmerID to INT.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT Load ODS_OnlineRetail\DCNV - CustmerID to INT.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\DCNV - CustmerID to INT.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT Load ODS_OnlineRetail\DCNV - CustmerID to INT.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT Load ODS_OnlineRetail\DCNV - Resizing"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="DCNV - Resizing"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\DFT Load ODS_OnlineRetail\DCNV - Resizing.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\DCNV - Resizing.Inputs[Data Conversion Input].Columns[StockCode]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="StockCode"
+                      lineageId="Package\DFT Load ODS_OnlineRetail\OLE_SRC - STA_OnlineRetail.Outputs[OLE DB Source Output].Columns[StockCode]" />
+                    <inputColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\DCNV - Resizing.Inputs[Data Conversion Input].Columns[Country]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Country"
+                      lineageId="Package\DFT Load ODS_OnlineRetail\OLE_SRC - STA_OnlineRetail.Outputs[OLE DB Source Output].Columns[Country]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT Load ODS_OnlineRetail\DCNV - Resizing.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\DFT Load ODS_OnlineRetail\DCNV - Resizing.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\DCNV - Resizing.Outputs[Data Conversion Output].Columns[StockCode]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="RedirectRow"
+                      length="10"
+                      lineageId="Package\DFT Load ODS_OnlineRetail\DCNV - Resizing.Outputs[Data Conversion Output].Columns[StockCode]"
+                      name="StockCode"
+                      truncationRowDisposition="RedirectRow">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\DFT Load ODS_OnlineRetail\OLE_SRC - STA_OnlineRetail.Outputs[OLE DB Source Output].Columns[StockCode]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\DCNV - Resizing.Outputs[Data Conversion Output].Columns[Country]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="RedirectRow"
+                      length="20"
+                      lineageId="Package\DFT Load ODS_OnlineRetail\DCNV - Resizing.Outputs[Data Conversion Output].Columns[Country]"
+                      name="Country"
+                      truncationRowDisposition="RedirectRow">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\DFT Load ODS_OnlineRetail\OLE_SRC - STA_OnlineRetail.Outputs[OLE DB Source Output].Columns[Country]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT Load ODS_OnlineRetail\DCNV - Resizing.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\DFT Load ODS_OnlineRetail\DCNV - Resizing.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\DCNV - Resizing.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT Load ODS_OnlineRetail\DCNV - Resizing.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\DCNV - Resizing.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT Load ODS_OnlineRetail\DCNV - Resizing.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT Load ODS_OnlineRetail\DER - Add Total Price"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="DER - Add Total Price"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\DFT Load ODS_OnlineRetail\DER - Add Total Price.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\DER - Add Total Price.Inputs[Derived Column Input].Columns[Quantity]"
+                      cachedDataType="r8"
+                      cachedName="Quantity"
+                      lineageId="Package\DFT Load ODS_OnlineRetail\OLE_SRC - STA_OnlineRetail.Outputs[OLE DB Source Output].Columns[Quantity]" />
+                    <inputColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\DER - Add Total Price.Inputs[Derived Column Input].Columns[UnitPrice]"
+                      cachedDataType="r8"
+                      cachedName="UnitPrice"
+                      lineageId="Package\DFT Load ODS_OnlineRetail\OLE_SRC - STA_OnlineRetail.Outputs[OLE DB Source Output].Columns[UnitPrice]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT Load ODS_OnlineRetail\DER - Add Total Price.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\DFT Load ODS_OnlineRetail\DER - Add Total Price.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\DER - Add Total Price.Outputs[Derived Column Output].Columns[TotalPrice]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="RedirectRow"
+                      lineageId="Package\DFT Load ODS_OnlineRetail\DER - Add Total Price.Outputs[Derived Column Output].Columns[TotalPrice]"
+                      name="TotalPrice"
+                      truncationRowDisposition="RedirectRow">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">#{Package\DFT Load ODS_OnlineRetail\OLE_SRC - STA_OnlineRetail.Outputs[OLE DB Source Output].Columns[Quantity]} * #{Package\DFT Load ODS_OnlineRetail\OLE_SRC - STA_OnlineRetail.Outputs[OLE DB Source Output].Columns[UnitPrice]}</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">Quantity * UnitPrice</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT Load ODS_OnlineRetail\DER - Add Total Price.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\DFT Load ODS_OnlineRetail\DER - Add Total Price.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\DER - Add Total Price.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT Load ODS_OnlineRetail\DER - Add Total Price.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\DER - Add Total Price.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT Load ODS_OnlineRetail\DER - Add Total Price.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT Load ODS_OnlineRetail\OLE_DST - ErrorLog"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE_DST - ErrorLog"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[ErrorLog_OnlineRetail]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT Load ODS_OnlineRetail\OLE_DST - ErrorLog.Connections[OleDbConnection]"
+                  connectionManagerID="{7A45CB77-157C-47AE-8598-AC0BA6FB1B6B}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[localhost.DEP_ADM]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DFT Load ODS_OnlineRetail\OLE_DST - ErrorLog.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\OLE_DST - ErrorLog.Inputs[OLE DB Destination Input].Columns[InvoiceNo]"
+                      cachedDataType="r8"
+                      cachedName="InvoiceNo"
+                      externalMetadataColumnId="Package\DFT Load ODS_OnlineRetail\OLE_DST - ErrorLog.Inputs[OLE DB Destination Input].ExternalColumns[InvoiceNo]"
+                      lineageId="Package\DFT Load ODS_OnlineRetail\Union All.Outputs[Union All Output 1].Columns[InvoiceNo]" />
+                    <inputColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\OLE_DST - ErrorLog.Inputs[OLE DB Destination Input].Columns[StockCode]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="StockCode"
+                      externalMetadataColumnId="Package\DFT Load ODS_OnlineRetail\OLE_DST - ErrorLog.Inputs[OLE DB Destination Input].ExternalColumns[StockCode]"
+                      lineageId="Package\DFT Load ODS_OnlineRetail\Union All.Outputs[Union All Output 1].Columns[StockCode]" />
+                    <inputColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\OLE_DST - ErrorLog.Inputs[OLE DB Destination Input].Columns[Description]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Description"
+                      externalMetadataColumnId="Package\DFT Load ODS_OnlineRetail\OLE_DST - ErrorLog.Inputs[OLE DB Destination Input].ExternalColumns[Description]"
+                      lineageId="Package\DFT Load ODS_OnlineRetail\Union All.Outputs[Union All Output 1].Columns[Description]" />
+                    <inputColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\OLE_DST - ErrorLog.Inputs[OLE DB Destination Input].Columns[Quantity]"
+                      cachedDataType="r8"
+                      cachedName="Quantity"
+                      externalMetadataColumnId="Package\DFT Load ODS_OnlineRetail\OLE_DST - ErrorLog.Inputs[OLE DB Destination Input].ExternalColumns[Quantity]"
+                      lineageId="Package\DFT Load ODS_OnlineRetail\Union All.Outputs[Union All Output 1].Columns[Quantity]" />
+                    <inputColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\OLE_DST - ErrorLog.Inputs[OLE DB Destination Input].Columns[InvoiceDate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="InvoiceDate"
+                      externalMetadataColumnId="Package\DFT Load ODS_OnlineRetail\OLE_DST - ErrorLog.Inputs[OLE DB Destination Input].ExternalColumns[InvoiceDate]"
+                      lineageId="Package\DFT Load ODS_OnlineRetail\Union All.Outputs[Union All Output 1].Columns[InvoiceDate]" />
+                    <inputColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\OLE_DST - ErrorLog.Inputs[OLE DB Destination Input].Columns[UnitPrice]"
+                      cachedDataType="r8"
+                      cachedName="UnitPrice"
+                      externalMetadataColumnId="Package\DFT Load ODS_OnlineRetail\OLE_DST - ErrorLog.Inputs[OLE DB Destination Input].ExternalColumns[UnitPrice]"
+                      lineageId="Package\DFT Load ODS_OnlineRetail\Union All.Outputs[Union All Output 1].Columns[UnitPrice]" />
+                    <inputColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\OLE_DST - ErrorLog.Inputs[OLE DB Destination Input].Columns[CustomerID]"
+                      cachedDataType="r8"
+                      cachedName="CustomerID"
+                      externalMetadataColumnId="Package\DFT Load ODS_OnlineRetail\OLE_DST - ErrorLog.Inputs[OLE DB Destination Input].ExternalColumns[CustomerID]"
+                      lineageId="Package\DFT Load ODS_OnlineRetail\Union All.Outputs[Union All Output 1].Columns[CustomerID]" />
+                    <inputColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\OLE_DST - ErrorLog.Inputs[OLE DB Destination Input].Columns[Country]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Country"
+                      externalMetadataColumnId="Package\DFT Load ODS_OnlineRetail\OLE_DST - ErrorLog.Inputs[OLE DB Destination Input].ExternalColumns[Country]"
+                      lineageId="Package\DFT Load ODS_OnlineRetail\Union All.Outputs[Union All Output 1].Columns[Country]" />
+                    <inputColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\OLE_DST - ErrorLog.Inputs[OLE DB Destination Input].Columns[ErrorCode]"
+                      cachedDataType="i4"
+                      cachedName="ErrorCode"
+                      externalMetadataColumnId="Package\DFT Load ODS_OnlineRetail\OLE_DST - ErrorLog.Inputs[OLE DB Destination Input].ExternalColumns[ErrorCode]"
+                      lineageId="Package\DFT Load ODS_OnlineRetail\Union All.Outputs[Union All Output 1].Columns[ErrorCode]" />
+                    <inputColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\OLE_DST - ErrorLog.Inputs[OLE DB Destination Input].Columns[ErrorColumn]"
+                      cachedDataType="i4"
+                      cachedName="ErrorColumn"
+                      externalMetadataColumnId="Package\DFT Load ODS_OnlineRetail\OLE_DST - ErrorLog.Inputs[OLE DB Destination Input].ExternalColumns[ErrorColumn]"
+                      lineageId="Package\DFT Load ODS_OnlineRetail\Union All.Outputs[Union All Output 1].Columns[ErrorColumn]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\OLE_DST - ErrorLog.Inputs[OLE DB Destination Input].ExternalColumns[ErrorID]"
+                      dataType="i4"
+                      name="ErrorID" />
+                    <externalMetadataColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\OLE_DST - ErrorLog.Inputs[OLE DB Destination Input].ExternalColumns[ErrorCode]"
+                      dataType="i4"
+                      name="ErrorCode" />
+                    <externalMetadataColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\OLE_DST - ErrorLog.Inputs[OLE DB Destination Input].ExternalColumns[ErrorColumn]"
+                      dataType="i4"
+                      name="ErrorColumn" />
+                    <externalMetadataColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\OLE_DST - ErrorLog.Inputs[OLE DB Destination Input].ExternalColumns[ErrorDescription]"
+                      dataType="wstr"
+                      length="1000"
+                      name="ErrorDescription" />
+                    <externalMetadataColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\OLE_DST - ErrorLog.Inputs[OLE DB Destination Input].ExternalColumns[InvoiceNo]"
+                      dataType="wstr"
+                      length="20"
+                      name="InvoiceNo" />
+                    <externalMetadataColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\OLE_DST - ErrorLog.Inputs[OLE DB Destination Input].ExternalColumns[StockCode]"
+                      dataType="wstr"
+                      length="20"
+                      name="StockCode" />
+                    <externalMetadataColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\OLE_DST - ErrorLog.Inputs[OLE DB Destination Input].ExternalColumns[Description]"
+                      dataType="wstr"
+                      length="255"
+                      name="Description" />
+                    <externalMetadataColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\OLE_DST - ErrorLog.Inputs[OLE DB Destination Input].ExternalColumns[Quantity]"
+                      dataType="i4"
+                      name="Quantity" />
+                    <externalMetadataColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\OLE_DST - ErrorLog.Inputs[OLE DB Destination Input].ExternalColumns[InvoiceDate]"
+                      dataType="dbTimeStamp"
+                      name="InvoiceDate" />
+                    <externalMetadataColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\OLE_DST - ErrorLog.Inputs[OLE DB Destination Input].ExternalColumns[UnitPrice]"
+                      dataType="numeric"
+                      name="UnitPrice"
+                      precision="10"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\OLE_DST - ErrorLog.Inputs[OLE DB Destination Input].ExternalColumns[CustomerID]"
+                      dataType="i4"
+                      name="CustomerID" />
+                    <externalMetadataColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\OLE_DST - ErrorLog.Inputs[OLE DB Destination Input].ExternalColumns[Country]"
+                      dataType="wstr"
+                      length="100"
+                      name="Country" />
+                    <externalMetadataColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\OLE_DST - ErrorLog.Inputs[OLE DB Destination Input].ExternalColumns[ErrorDateTime]"
+                      dataType="dbTimeStamp"
+                      name="ErrorDateTime" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT Load ODS_OnlineRetail\OLE_DST - ErrorLog.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\DFT Load ODS_OnlineRetail\OLE_DST - ErrorLog.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\OLE_DST - ErrorLog.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT Load ODS_OnlineRetail\OLE_DST - ErrorLog.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\OLE_DST - ErrorLog.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT Load ODS_OnlineRetail\OLE_DST - ErrorLog.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT Load ODS_OnlineRetail\OLE_DST - ODS_OnlineRetail"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE_DST - ODS_OnlineRetail"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[ODS_OnlineRetail]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT Load ODS_OnlineRetail\OLE_DST - ODS_OnlineRetail.Connections[OleDbConnection]"
+                  connectionManagerID="{6FDA07A8-5844-4B65-94FE-BA927AA3D2BF}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[localhost.DEP_ODS]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DFT Load ODS_OnlineRetail\OLE_DST - ODS_OnlineRetail.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\OLE_DST - ODS_OnlineRetail.Inputs[OLE DB Destination Input].Columns[InvoiceNo]"
+                      cachedDataType="r8"
+                      cachedName="InvoiceNo"
+                      externalMetadataColumnId="Package\DFT Load ODS_OnlineRetail\OLE_DST - ODS_OnlineRetail.Inputs[OLE DB Destination Input].ExternalColumns[InvoiceNo]"
+                      lineageId="Package\DFT Load ODS_OnlineRetail\OLE_SRC - STA_OnlineRetail.Outputs[OLE DB Source Output].Columns[InvoiceNo]" />
+                    <inputColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\OLE_DST - ODS_OnlineRetail.Inputs[OLE DB Destination Input].Columns[Description]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Description"
+                      externalMetadataColumnId="Package\DFT Load ODS_OnlineRetail\OLE_DST - ODS_OnlineRetail.Inputs[OLE DB Destination Input].ExternalColumns[Description]"
+                      lineageId="Package\DFT Load ODS_OnlineRetail\OLE_SRC - STA_OnlineRetail.Outputs[OLE DB Source Output].Columns[Description]" />
+                    <inputColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\OLE_DST - ODS_OnlineRetail.Inputs[OLE DB Destination Input].Columns[Quantity]"
+                      cachedDataType="r8"
+                      cachedName="Quantity"
+                      externalMetadataColumnId="Package\DFT Load ODS_OnlineRetail\OLE_DST - ODS_OnlineRetail.Inputs[OLE DB Destination Input].ExternalColumns[Quantity]"
+                      lineageId="Package\DFT Load ODS_OnlineRetail\OLE_SRC - STA_OnlineRetail.Outputs[OLE DB Source Output].Columns[Quantity]" />
+                    <inputColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\OLE_DST - ODS_OnlineRetail.Inputs[OLE DB Destination Input].Columns[InvoiceDate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="InvoiceDate"
+                      externalMetadataColumnId="Package\DFT Load ODS_OnlineRetail\OLE_DST - ODS_OnlineRetail.Inputs[OLE DB Destination Input].ExternalColumns[InvoiceDate]"
+                      lineageId="Package\DFT Load ODS_OnlineRetail\OLE_SRC - STA_OnlineRetail.Outputs[OLE DB Source Output].Columns[InvoiceDate]" />
+                    <inputColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\OLE_DST - ODS_OnlineRetail.Inputs[OLE DB Destination Input].Columns[UnitPrice]"
+                      cachedDataType="r8"
+                      cachedName="UnitPrice"
+                      externalMetadataColumnId="Package\DFT Load ODS_OnlineRetail\OLE_DST - ODS_OnlineRetail.Inputs[OLE DB Destination Input].ExternalColumns[UnitPrice]"
+                      lineageId="Package\DFT Load ODS_OnlineRetail\OLE_SRC - STA_OnlineRetail.Outputs[OLE DB Source Output].Columns[UnitPrice]" />
+                    <inputColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\OLE_DST - ODS_OnlineRetail.Inputs[OLE DB Destination Input].Columns[TotalPrice]"
+                      cachedDataType="r8"
+                      cachedName="TotalPrice"
+                      externalMetadataColumnId="Package\DFT Load ODS_OnlineRetail\OLE_DST - ODS_OnlineRetail.Inputs[OLE DB Destination Input].ExternalColumns[TotalPrice]"
+                      lineageId="Package\DFT Load ODS_OnlineRetail\DER - Add Total Price.Outputs[Derived Column Output].Columns[TotalPrice]" />
+                    <inputColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\OLE_DST - ODS_OnlineRetail.Inputs[OLE DB Destination Input].Columns[CustomerID_DCNV]"
+                      cachedDataType="i4"
+                      cachedName="CustomerID_DCNV"
+                      externalMetadataColumnId="Package\DFT Load ODS_OnlineRetail\OLE_DST - ODS_OnlineRetail.Inputs[OLE DB Destination Input].ExternalColumns[CustomerID]"
+                      lineageId="Package\DFT Load ODS_OnlineRetail\DCNV - CustmerID to INT.Outputs[Data Conversion Output].Columns[CustomerID_DCNV]" />
+                    <inputColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\OLE_DST - ODS_OnlineRetail.Inputs[OLE DB Destination Input].Columns[Country]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="Country"
+                      externalMetadataColumnId="Package\DFT Load ODS_OnlineRetail\OLE_DST - ODS_OnlineRetail.Inputs[OLE DB Destination Input].ExternalColumns[Country]"
+                      lineageId="Package\DFT Load ODS_OnlineRetail\DCNV - Resizing.Outputs[Data Conversion Output].Columns[Country]" />
+                    <inputColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\OLE_DST - ODS_OnlineRetail.Inputs[OLE DB Destination Input].Columns[StockCode]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="StockCode"
+                      externalMetadataColumnId="Package\DFT Load ODS_OnlineRetail\OLE_DST - ODS_OnlineRetail.Inputs[OLE DB Destination Input].ExternalColumns[StockCode]"
+                      lineageId="Package\DFT Load ODS_OnlineRetail\DCNV - Resizing.Outputs[Data Conversion Output].Columns[StockCode]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\OLE_DST - ODS_OnlineRetail.Inputs[OLE DB Destination Input].ExternalColumns[InvoiceNo]"
+                      dataType="r8"
+                      name="InvoiceNo" />
+                    <externalMetadataColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\OLE_DST - ODS_OnlineRetail.Inputs[OLE DB Destination Input].ExternalColumns[StockCode]"
+                      dataType="wstr"
+                      length="10"
+                      name="StockCode" />
+                    <externalMetadataColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\OLE_DST - ODS_OnlineRetail.Inputs[OLE DB Destination Input].ExternalColumns[Description]"
+                      dataType="wstr"
+                      length="255"
+                      name="Description" />
+                    <externalMetadataColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\OLE_DST - ODS_OnlineRetail.Inputs[OLE DB Destination Input].ExternalColumns[Quantity]"
+                      dataType="r8"
+                      name="Quantity" />
+                    <externalMetadataColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\OLE_DST - ODS_OnlineRetail.Inputs[OLE DB Destination Input].ExternalColumns[InvoiceDate]"
+                      dataType="dbTimeStamp"
+                      name="InvoiceDate" />
+                    <externalMetadataColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\OLE_DST - ODS_OnlineRetail.Inputs[OLE DB Destination Input].ExternalColumns[UnitPrice]"
+                      dataType="r8"
+                      name="UnitPrice" />
+                    <externalMetadataColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\OLE_DST - ODS_OnlineRetail.Inputs[OLE DB Destination Input].ExternalColumns[CustomerID]"
+                      dataType="i4"
+                      name="CustomerID" />
+                    <externalMetadataColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\OLE_DST - ODS_OnlineRetail.Inputs[OLE DB Destination Input].ExternalColumns[Country]"
+                      dataType="wstr"
+                      length="20"
+                      name="Country" />
+                    <externalMetadataColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\OLE_DST - ODS_OnlineRetail.Inputs[OLE DB Destination Input].ExternalColumns[TotalPrice]"
+                      dataType="r8"
+                      name="TotalPrice" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT Load ODS_OnlineRetail\OLE_DST - ODS_OnlineRetail.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\DFT Load ODS_OnlineRetail\OLE_DST - ODS_OnlineRetail.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\OLE_DST - ODS_OnlineRetail.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT Load ODS_OnlineRetail\OLE_DST - ODS_OnlineRetail.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\OLE_DST - ODS_OnlineRetail.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT Load ODS_OnlineRetail\OLE_DST - ODS_OnlineRetail.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT Load ODS_OnlineRetail\OLE_SRC - STA_OnlineRetail"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE_SRC - STA_OnlineRetail"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[STA_OnlineRetail]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT 
+    InvoiceNo,
+    StockCode,
+    Description,
+    Quantity,
+    InvoiceDate,
+    UnitPrice,
+    CustomerID,
+    Country
+FROM STA_OnlineRetail
+WHERE CustomerID IS NOT NULL 
+  AND Quantity &gt; 0 
+  AND UnitPrice &gt; 0</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT Load ODS_OnlineRetail\OLE_SRC - STA_OnlineRetail.Connections[OleDbConnection]"
+                  connectionManagerID="{50CDB26F-8188-42B8-A099-11883CD96289}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[localhost.DEP_STA]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\DFT Load ODS_OnlineRetail\OLE_SRC - STA_OnlineRetail.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\OLE_SRC - STA_OnlineRetail.Outputs[OLE DB Source Output].Columns[InvoiceNo]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT Load ODS_OnlineRetail\OLE_SRC - STA_OnlineRetail.Outputs[OLE DB Source Output].ExternalColumns[InvoiceNo]"
+                      lineageId="Package\DFT Load ODS_OnlineRetail\OLE_SRC - STA_OnlineRetail.Outputs[OLE DB Source Output].Columns[InvoiceNo]"
+                      name="InvoiceNo"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\OLE_SRC - STA_OnlineRetail.Outputs[OLE DB Source Output].Columns[StockCode]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT Load ODS_OnlineRetail\OLE_SRC - STA_OnlineRetail.Outputs[OLE DB Source Output].ExternalColumns[StockCode]"
+                      length="255"
+                      lineageId="Package\DFT Load ODS_OnlineRetail\OLE_SRC - STA_OnlineRetail.Outputs[OLE DB Source Output].Columns[StockCode]"
+                      name="StockCode"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\OLE_SRC - STA_OnlineRetail.Outputs[OLE DB Source Output].Columns[Description]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT Load ODS_OnlineRetail\OLE_SRC - STA_OnlineRetail.Outputs[OLE DB Source Output].ExternalColumns[Description]"
+                      length="255"
+                      lineageId="Package\DFT Load ODS_OnlineRetail\OLE_SRC - STA_OnlineRetail.Outputs[OLE DB Source Output].Columns[Description]"
+                      name="Description"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\OLE_SRC - STA_OnlineRetail.Outputs[OLE DB Source Output].Columns[Quantity]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT Load ODS_OnlineRetail\OLE_SRC - STA_OnlineRetail.Outputs[OLE DB Source Output].ExternalColumns[Quantity]"
+                      lineageId="Package\DFT Load ODS_OnlineRetail\OLE_SRC - STA_OnlineRetail.Outputs[OLE DB Source Output].Columns[Quantity]"
+                      name="Quantity"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\OLE_SRC - STA_OnlineRetail.Outputs[OLE DB Source Output].Columns[InvoiceDate]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT Load ODS_OnlineRetail\OLE_SRC - STA_OnlineRetail.Outputs[OLE DB Source Output].ExternalColumns[InvoiceDate]"
+                      lineageId="Package\DFT Load ODS_OnlineRetail\OLE_SRC - STA_OnlineRetail.Outputs[OLE DB Source Output].Columns[InvoiceDate]"
+                      name="InvoiceDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\OLE_SRC - STA_OnlineRetail.Outputs[OLE DB Source Output].Columns[UnitPrice]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT Load ODS_OnlineRetail\OLE_SRC - STA_OnlineRetail.Outputs[OLE DB Source Output].ExternalColumns[UnitPrice]"
+                      lineageId="Package\DFT Load ODS_OnlineRetail\OLE_SRC - STA_OnlineRetail.Outputs[OLE DB Source Output].Columns[UnitPrice]"
+                      name="UnitPrice"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\OLE_SRC - STA_OnlineRetail.Outputs[OLE DB Source Output].Columns[CustomerID]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT Load ODS_OnlineRetail\OLE_SRC - STA_OnlineRetail.Outputs[OLE DB Source Output].ExternalColumns[CustomerID]"
+                      lineageId="Package\DFT Load ODS_OnlineRetail\OLE_SRC - STA_OnlineRetail.Outputs[OLE DB Source Output].Columns[CustomerID]"
+                      name="CustomerID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\OLE_SRC - STA_OnlineRetail.Outputs[OLE DB Source Output].Columns[Country]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT Load ODS_OnlineRetail\OLE_SRC - STA_OnlineRetail.Outputs[OLE DB Source Output].ExternalColumns[Country]"
+                      length="255"
+                      lineageId="Package\DFT Load ODS_OnlineRetail\OLE_SRC - STA_OnlineRetail.Outputs[OLE DB Source Output].Columns[Country]"
+                      name="Country"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\OLE_SRC - STA_OnlineRetail.Outputs[OLE DB Source Output].ExternalColumns[InvoiceNo]"
+                      dataType="r8"
+                      name="InvoiceNo" />
+                    <externalMetadataColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\OLE_SRC - STA_OnlineRetail.Outputs[OLE DB Source Output].ExternalColumns[StockCode]"
+                      dataType="wstr"
+                      length="255"
+                      name="StockCode" />
+                    <externalMetadataColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\OLE_SRC - STA_OnlineRetail.Outputs[OLE DB Source Output].ExternalColumns[Description]"
+                      dataType="wstr"
+                      length="255"
+                      name="Description" />
+                    <externalMetadataColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\OLE_SRC - STA_OnlineRetail.Outputs[OLE DB Source Output].ExternalColumns[Quantity]"
+                      dataType="r8"
+                      name="Quantity" />
+                    <externalMetadataColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\OLE_SRC - STA_OnlineRetail.Outputs[OLE DB Source Output].ExternalColumns[InvoiceDate]"
+                      dataType="dbTimeStamp"
+                      name="InvoiceDate" />
+                    <externalMetadataColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\OLE_SRC - STA_OnlineRetail.Outputs[OLE DB Source Output].ExternalColumns[UnitPrice]"
+                      dataType="r8"
+                      name="UnitPrice" />
+                    <externalMetadataColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\OLE_SRC - STA_OnlineRetail.Outputs[OLE DB Source Output].ExternalColumns[CustomerID]"
+                      dataType="r8"
+                      name="CustomerID" />
+                    <externalMetadataColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\OLE_SRC - STA_OnlineRetail.Outputs[OLE DB Source Output].ExternalColumns[Country]"
+                      dataType="wstr"
+                      length="255"
+                      name="Country" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\DFT Load ODS_OnlineRetail\OLE_SRC - STA_OnlineRetail.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\OLE_SRC - STA_OnlineRetail.Outputs[OLE DB Source Error Output].Columns[InvoiceNo]"
+                      dataType="r8"
+                      lineageId="Package\DFT Load ODS_OnlineRetail\OLE_SRC - STA_OnlineRetail.Outputs[OLE DB Source Error Output].Columns[InvoiceNo]"
+                      name="InvoiceNo" />
+                    <outputColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\OLE_SRC - STA_OnlineRetail.Outputs[OLE DB Source Error Output].Columns[StockCode]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\DFT Load ODS_OnlineRetail\OLE_SRC - STA_OnlineRetail.Outputs[OLE DB Source Error Output].Columns[StockCode]"
+                      name="StockCode" />
+                    <outputColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\OLE_SRC - STA_OnlineRetail.Outputs[OLE DB Source Error Output].Columns[Description]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\DFT Load ODS_OnlineRetail\OLE_SRC - STA_OnlineRetail.Outputs[OLE DB Source Error Output].Columns[Description]"
+                      name="Description" />
+                    <outputColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\OLE_SRC - STA_OnlineRetail.Outputs[OLE DB Source Error Output].Columns[Quantity]"
+                      dataType="r8"
+                      lineageId="Package\DFT Load ODS_OnlineRetail\OLE_SRC - STA_OnlineRetail.Outputs[OLE DB Source Error Output].Columns[Quantity]"
+                      name="Quantity" />
+                    <outputColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\OLE_SRC - STA_OnlineRetail.Outputs[OLE DB Source Error Output].Columns[InvoiceDate]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\DFT Load ODS_OnlineRetail\OLE_SRC - STA_OnlineRetail.Outputs[OLE DB Source Error Output].Columns[InvoiceDate]"
+                      name="InvoiceDate" />
+                    <outputColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\OLE_SRC - STA_OnlineRetail.Outputs[OLE DB Source Error Output].Columns[UnitPrice]"
+                      dataType="r8"
+                      lineageId="Package\DFT Load ODS_OnlineRetail\OLE_SRC - STA_OnlineRetail.Outputs[OLE DB Source Error Output].Columns[UnitPrice]"
+                      name="UnitPrice" />
+                    <outputColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\OLE_SRC - STA_OnlineRetail.Outputs[OLE DB Source Error Output].Columns[CustomerID]"
+                      dataType="r8"
+                      lineageId="Package\DFT Load ODS_OnlineRetail\OLE_SRC - STA_OnlineRetail.Outputs[OLE DB Source Error Output].Columns[CustomerID]"
+                      name="CustomerID" />
+                    <outputColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\OLE_SRC - STA_OnlineRetail.Outputs[OLE DB Source Error Output].Columns[Country]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\DFT Load ODS_OnlineRetail\OLE_SRC - STA_OnlineRetail.Outputs[OLE DB Source Error Output].Columns[Country]"
+                      name="Country" />
+                    <outputColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\OLE_SRC - STA_OnlineRetail.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT Load ODS_OnlineRetail\OLE_SRC - STA_OnlineRetail.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\OLE_SRC - STA_OnlineRetail.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT Load ODS_OnlineRetail\OLE_SRC - STA_OnlineRetail.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT Load ODS_OnlineRetail\Union All"
+              componentClassID="Microsoft.UnionAll"
+              contactInfo="Union All;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Combines rows from multiple data flows without sorting. For example, add rows back to a data flow after correction of errors. If sorting is important, we recommend using the Merge transformation."
+              name="Union All"
+              version="1">
+              <inputs>
+                <input
+                  refId="Package\DFT Load ODS_OnlineRetail\Union All.Inputs[Union All Input 2]"
+                  hasSideEffects="true"
+                  name="Union All Input 2">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\Union All.Inputs[Union All Input 2].Columns[InvoiceNo]"
+                      cachedDataType="r8"
+                      cachedName="InvoiceNo"
+                      lineageId="Package\DFT Load ODS_OnlineRetail\OLE_SRC - STA_OnlineRetail.Outputs[OLE DB Source Output].Columns[InvoiceNo]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFT Load ODS_OnlineRetail\Union All.Outputs[Union All Output 1].Columns[InvoiceNo]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\Union All.Inputs[Union All Input 2].Columns[StockCode]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="StockCode"
+                      lineageId="Package\DFT Load ODS_OnlineRetail\OLE_SRC - STA_OnlineRetail.Outputs[OLE DB Source Output].Columns[StockCode]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFT Load ODS_OnlineRetail\Union All.Outputs[Union All Output 1].Columns[StockCode]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\Union All.Inputs[Union All Input 2].Columns[Description]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Description"
+                      lineageId="Package\DFT Load ODS_OnlineRetail\OLE_SRC - STA_OnlineRetail.Outputs[OLE DB Source Output].Columns[Description]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFT Load ODS_OnlineRetail\Union All.Outputs[Union All Output 1].Columns[Description]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\Union All.Inputs[Union All Input 2].Columns[Quantity]"
+                      cachedDataType="r8"
+                      cachedName="Quantity"
+                      lineageId="Package\DFT Load ODS_OnlineRetail\OLE_SRC - STA_OnlineRetail.Outputs[OLE DB Source Output].Columns[Quantity]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFT Load ODS_OnlineRetail\Union All.Outputs[Union All Output 1].Columns[Quantity]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\Union All.Inputs[Union All Input 2].Columns[InvoiceDate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="InvoiceDate"
+                      lineageId="Package\DFT Load ODS_OnlineRetail\OLE_SRC - STA_OnlineRetail.Outputs[OLE DB Source Output].Columns[InvoiceDate]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFT Load ODS_OnlineRetail\Union All.Outputs[Union All Output 1].Columns[InvoiceDate]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\Union All.Inputs[Union All Input 2].Columns[UnitPrice]"
+                      cachedDataType="r8"
+                      cachedName="UnitPrice"
+                      lineageId="Package\DFT Load ODS_OnlineRetail\OLE_SRC - STA_OnlineRetail.Outputs[OLE DB Source Output].Columns[UnitPrice]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFT Load ODS_OnlineRetail\Union All.Outputs[Union All Output 1].Columns[UnitPrice]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\Union All.Inputs[Union All Input 2].Columns[CustomerID]"
+                      cachedDataType="r8"
+                      cachedName="CustomerID"
+                      lineageId="Package\DFT Load ODS_OnlineRetail\OLE_SRC - STA_OnlineRetail.Outputs[OLE DB Source Output].Columns[CustomerID]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFT Load ODS_OnlineRetail\Union All.Outputs[Union All Output 1].Columns[CustomerID]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\Union All.Inputs[Union All Input 2].Columns[Country]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Country"
+                      lineageId="Package\DFT Load ODS_OnlineRetail\OLE_SRC - STA_OnlineRetail.Outputs[OLE DB Source Output].Columns[Country]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFT Load ODS_OnlineRetail\Union All.Outputs[Union All Output 1].Columns[Country]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\Union All.Inputs[Union All Input 2].Columns[ErrorCode]"
+                      cachedDataType="i4"
+                      cachedName="ErrorCode"
+                      lineageId="Package\DFT Load ODS_OnlineRetail\DER - Add Total Price.Outputs[Derived Column Error Output].Columns[ErrorCode]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFT Load ODS_OnlineRetail\Union All.Outputs[Union All Output 1].Columns[ErrorCode]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\Union All.Inputs[Union All Input 2].Columns[ErrorColumn]"
+                      cachedDataType="i4"
+                      cachedName="ErrorColumn"
+                      lineageId="Package\DFT Load ODS_OnlineRetail\DER - Add Total Price.Outputs[Derived Column Error Output].Columns[ErrorColumn]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFT Load ODS_OnlineRetail\Union All.Outputs[Union All Output 1].Columns[ErrorColumn]}</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\DFT Load ODS_OnlineRetail\Union All.Inputs[Union All Input 3]"
+                  hasSideEffects="true"
+                  name="Union All Input 3">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\Union All.Inputs[Union All Input 3].Columns[InvoiceNo]"
+                      cachedDataType="r8"
+                      cachedName="InvoiceNo"
+                      lineageId="Package\DFT Load ODS_OnlineRetail\OLE_SRC - STA_OnlineRetail.Outputs[OLE DB Source Output].Columns[InvoiceNo]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFT Load ODS_OnlineRetail\Union All.Outputs[Union All Output 1].Columns[InvoiceNo]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\Union All.Inputs[Union All Input 3].Columns[StockCode]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="StockCode"
+                      lineageId="Package\DFT Load ODS_OnlineRetail\OLE_SRC - STA_OnlineRetail.Outputs[OLE DB Source Output].Columns[StockCode]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFT Load ODS_OnlineRetail\Union All.Outputs[Union All Output 1].Columns[StockCode]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\Union All.Inputs[Union All Input 3].Columns[Description]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Description"
+                      lineageId="Package\DFT Load ODS_OnlineRetail\OLE_SRC - STA_OnlineRetail.Outputs[OLE DB Source Output].Columns[Description]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFT Load ODS_OnlineRetail\Union All.Outputs[Union All Output 1].Columns[Description]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\Union All.Inputs[Union All Input 3].Columns[Quantity]"
+                      cachedDataType="r8"
+                      cachedName="Quantity"
+                      lineageId="Package\DFT Load ODS_OnlineRetail\OLE_SRC - STA_OnlineRetail.Outputs[OLE DB Source Output].Columns[Quantity]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFT Load ODS_OnlineRetail\Union All.Outputs[Union All Output 1].Columns[Quantity]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\Union All.Inputs[Union All Input 3].Columns[InvoiceDate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="InvoiceDate"
+                      lineageId="Package\DFT Load ODS_OnlineRetail\OLE_SRC - STA_OnlineRetail.Outputs[OLE DB Source Output].Columns[InvoiceDate]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFT Load ODS_OnlineRetail\Union All.Outputs[Union All Output 1].Columns[InvoiceDate]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\Union All.Inputs[Union All Input 3].Columns[UnitPrice]"
+                      cachedDataType="r8"
+                      cachedName="UnitPrice"
+                      lineageId="Package\DFT Load ODS_OnlineRetail\OLE_SRC - STA_OnlineRetail.Outputs[OLE DB Source Output].Columns[UnitPrice]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFT Load ODS_OnlineRetail\Union All.Outputs[Union All Output 1].Columns[UnitPrice]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\Union All.Inputs[Union All Input 3].Columns[CustomerID]"
+                      cachedDataType="r8"
+                      cachedName="CustomerID"
+                      lineageId="Package\DFT Load ODS_OnlineRetail\OLE_SRC - STA_OnlineRetail.Outputs[OLE DB Source Output].Columns[CustomerID]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFT Load ODS_OnlineRetail\Union All.Outputs[Union All Output 1].Columns[CustomerID]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\Union All.Inputs[Union All Input 3].Columns[Country]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Country"
+                      lineageId="Package\DFT Load ODS_OnlineRetail\OLE_SRC - STA_OnlineRetail.Outputs[OLE DB Source Output].Columns[Country]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFT Load ODS_OnlineRetail\Union All.Outputs[Union All Output 1].Columns[Country]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\Union All.Inputs[Union All Input 3].Columns[ErrorCode]"
+                      cachedDataType="i4"
+                      cachedName="ErrorCode"
+                      lineageId="Package\DFT Load ODS_OnlineRetail\DCNV - CustmerID to INT.Outputs[Data Conversion Error Output].Columns[ErrorCode]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFT Load ODS_OnlineRetail\Union All.Outputs[Union All Output 1].Columns[ErrorCode]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\Union All.Inputs[Union All Input 3].Columns[ErrorColumn]"
+                      cachedDataType="i4"
+                      cachedName="ErrorColumn"
+                      lineageId="Package\DFT Load ODS_OnlineRetail\DCNV - CustmerID to INT.Outputs[Data Conversion Error Output].Columns[ErrorColumn]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFT Load ODS_OnlineRetail\Union All.Outputs[Union All Output 1].Columns[ErrorColumn]}</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\DFT Load ODS_OnlineRetail\Union All.Inputs[Union All Input 4]"
+                  hasSideEffects="true"
+                  name="Union All Input 4">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\Union All.Inputs[Union All Input 4].Columns[InvoiceNo]"
+                      cachedDataType="r8"
+                      cachedName="InvoiceNo"
+                      lineageId="Package\DFT Load ODS_OnlineRetail\OLE_SRC - STA_OnlineRetail.Outputs[OLE DB Source Output].Columns[InvoiceNo]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFT Load ODS_OnlineRetail\Union All.Outputs[Union All Output 1].Columns[InvoiceNo]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\Union All.Inputs[Union All Input 4].Columns[StockCode]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="StockCode"
+                      lineageId="Package\DFT Load ODS_OnlineRetail\OLE_SRC - STA_OnlineRetail.Outputs[OLE DB Source Output].Columns[StockCode]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFT Load ODS_OnlineRetail\Union All.Outputs[Union All Output 1].Columns[StockCode]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\Union All.Inputs[Union All Input 4].Columns[Description]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Description"
+                      lineageId="Package\DFT Load ODS_OnlineRetail\OLE_SRC - STA_OnlineRetail.Outputs[OLE DB Source Output].Columns[Description]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFT Load ODS_OnlineRetail\Union All.Outputs[Union All Output 1].Columns[Description]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\Union All.Inputs[Union All Input 4].Columns[Quantity]"
+                      cachedDataType="r8"
+                      cachedName="Quantity"
+                      lineageId="Package\DFT Load ODS_OnlineRetail\OLE_SRC - STA_OnlineRetail.Outputs[OLE DB Source Output].Columns[Quantity]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFT Load ODS_OnlineRetail\Union All.Outputs[Union All Output 1].Columns[Quantity]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\Union All.Inputs[Union All Input 4].Columns[InvoiceDate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="InvoiceDate"
+                      lineageId="Package\DFT Load ODS_OnlineRetail\OLE_SRC - STA_OnlineRetail.Outputs[OLE DB Source Output].Columns[InvoiceDate]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFT Load ODS_OnlineRetail\Union All.Outputs[Union All Output 1].Columns[InvoiceDate]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\Union All.Inputs[Union All Input 4].Columns[UnitPrice]"
+                      cachedDataType="r8"
+                      cachedName="UnitPrice"
+                      lineageId="Package\DFT Load ODS_OnlineRetail\OLE_SRC - STA_OnlineRetail.Outputs[OLE DB Source Output].Columns[UnitPrice]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFT Load ODS_OnlineRetail\Union All.Outputs[Union All Output 1].Columns[UnitPrice]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\Union All.Inputs[Union All Input 4].Columns[CustomerID]"
+                      cachedDataType="r8"
+                      cachedName="CustomerID"
+                      lineageId="Package\DFT Load ODS_OnlineRetail\OLE_SRC - STA_OnlineRetail.Outputs[OLE DB Source Output].Columns[CustomerID]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFT Load ODS_OnlineRetail\Union All.Outputs[Union All Output 1].Columns[CustomerID]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\Union All.Inputs[Union All Input 4].Columns[Country]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Country"
+                      lineageId="Package\DFT Load ODS_OnlineRetail\OLE_SRC - STA_OnlineRetail.Outputs[OLE DB Source Output].Columns[Country]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFT Load ODS_OnlineRetail\Union All.Outputs[Union All Output 1].Columns[Country]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\Union All.Inputs[Union All Input 4].Columns[ErrorCode]"
+                      cachedDataType="i4"
+                      cachedName="ErrorCode"
+                      lineageId="Package\DFT Load ODS_OnlineRetail\DCNV - Resizing.Outputs[Data Conversion Error Output].Columns[ErrorCode]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFT Load ODS_OnlineRetail\Union All.Outputs[Union All Output 1].Columns[ErrorCode]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\Union All.Inputs[Union All Input 4].Columns[ErrorColumn]"
+                      cachedDataType="i4"
+                      cachedName="ErrorColumn"
+                      lineageId="Package\DFT Load ODS_OnlineRetail\DCNV - Resizing.Outputs[Data Conversion Error Output].Columns[ErrorColumn]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DFT Load ODS_OnlineRetail\Union All.Outputs[Union All Output 1].Columns[ErrorColumn]}</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\DFT Load ODS_OnlineRetail\Union All.Inputs[Union All Input 5]"
+                  dangling="true"
+                  hasSideEffects="true"
+                  name="Union All Input 5">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT Load ODS_OnlineRetail\Union All.Outputs[Union All Output 1]"
+                  name="Union All Output 1">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\Union All.Outputs[Union All Output 1].Columns[InvoiceNo]"
+                      dataType="r8"
+                      lineageId="Package\DFT Load ODS_OnlineRetail\Union All.Outputs[Union All Output 1].Columns[InvoiceNo]"
+                      name="InvoiceNo" />
+                    <outputColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\Union All.Outputs[Union All Output 1].Columns[StockCode]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\DFT Load ODS_OnlineRetail\Union All.Outputs[Union All Output 1].Columns[StockCode]"
+                      name="StockCode" />
+                    <outputColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\Union All.Outputs[Union All Output 1].Columns[Description]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\DFT Load ODS_OnlineRetail\Union All.Outputs[Union All Output 1].Columns[Description]"
+                      name="Description" />
+                    <outputColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\Union All.Outputs[Union All Output 1].Columns[Quantity]"
+                      dataType="r8"
+                      lineageId="Package\DFT Load ODS_OnlineRetail\Union All.Outputs[Union All Output 1].Columns[Quantity]"
+                      name="Quantity" />
+                    <outputColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\Union All.Outputs[Union All Output 1].Columns[InvoiceDate]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\DFT Load ODS_OnlineRetail\Union All.Outputs[Union All Output 1].Columns[InvoiceDate]"
+                      name="InvoiceDate" />
+                    <outputColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\Union All.Outputs[Union All Output 1].Columns[UnitPrice]"
+                      dataType="r8"
+                      lineageId="Package\DFT Load ODS_OnlineRetail\Union All.Outputs[Union All Output 1].Columns[UnitPrice]"
+                      name="UnitPrice" />
+                    <outputColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\Union All.Outputs[Union All Output 1].Columns[CustomerID]"
+                      dataType="r8"
+                      lineageId="Package\DFT Load ODS_OnlineRetail\Union All.Outputs[Union All Output 1].Columns[CustomerID]"
+                      name="CustomerID" />
+                    <outputColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\Union All.Outputs[Union All Output 1].Columns[Country]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\DFT Load ODS_OnlineRetail\Union All.Outputs[Union All Output 1].Columns[Country]"
+                      name="Country" />
+                    <outputColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\Union All.Outputs[Union All Output 1].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT Load ODS_OnlineRetail\Union All.Outputs[Union All Output 1].Columns[ErrorCode]"
+                      name="ErrorCode" />
+                    <outputColumn
+                      refId="Package\DFT Load ODS_OnlineRetail\Union All.Outputs[Union All Output 1].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT Load ODS_OnlineRetail\Union All.Outputs[Union All Output 1].Columns[ErrorColumn]"
+                      name="ErrorColumn" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\DFT Load ODS_OnlineRetail.Paths[Data Conversion Error Output]"
+              endId="Package\DFT Load ODS_OnlineRetail\Union All.Inputs[Union All Input 3]"
+              name="Data Conversion Error Output"
+              startId="Package\DFT Load ODS_OnlineRetail\DCNV - CustmerID to INT.Outputs[Data Conversion Error Output]" />
+            <path
+              refId="Package\DFT Load ODS_OnlineRetail.Paths[Data Conversion Error Output1]"
+              endId="Package\DFT Load ODS_OnlineRetail\Union All.Inputs[Union All Input 4]"
+              name="Data Conversion Error Output"
+              startId="Package\DFT Load ODS_OnlineRetail\DCNV - Resizing.Outputs[Data Conversion Error Output]" />
+            <path
+              refId="Package\DFT Load ODS_OnlineRetail.Paths[Data Conversion Output]"
+              endId="Package\DFT Load ODS_OnlineRetail\DER - Add Total Price.Inputs[Derived Column Input]"
+              name="Data Conversion Output"
+              startId="Package\DFT Load ODS_OnlineRetail\DCNV - CustmerID to INT.Outputs[Data Conversion Output]" />
+            <path
+              refId="Package\DFT Load ODS_OnlineRetail.Paths[Data Conversion Output1]"
+              endId="Package\DFT Load ODS_OnlineRetail\OLE_DST - ODS_OnlineRetail.Inputs[OLE DB Destination Input]"
+              name="Data Conversion Output"
+              startId="Package\DFT Load ODS_OnlineRetail\DCNV - Resizing.Outputs[Data Conversion Output]" />
+            <path
+              refId="Package\DFT Load ODS_OnlineRetail.Paths[Derived Column Error Output]"
+              endId="Package\DFT Load ODS_OnlineRetail\Union All.Inputs[Union All Input 2]"
+              name="Derived Column Error Output"
+              startId="Package\DFT Load ODS_OnlineRetail\DER - Add Total Price.Outputs[Derived Column Error Output]" />
+            <path
+              refId="Package\DFT Load ODS_OnlineRetail.Paths[Derived Column Output]"
+              endId="Package\DFT Load ODS_OnlineRetail\DCNV - Resizing.Inputs[Data Conversion Input]"
+              name="Derived Column Output"
+              startId="Package\DFT Load ODS_OnlineRetail\DER - Add Total Price.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\DFT Load ODS_OnlineRetail.Paths[OLE DB Source Output]"
+              endId="Package\DFT Load ODS_OnlineRetail\CDS - Non Null CustomerID.Inputs[Conditional Split Input]"
+              name="OLE DB Source Output"
+              startId="Package\DFT Load ODS_OnlineRetail\OLE_SRC - STA_OnlineRetail.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\DFT Load ODS_OnlineRetail.Paths[Remove Null CustID]"
+              endId="Package\DFT Load ODS_OnlineRetail\DCNV - CustmerID to INT.Inputs[Data Conversion Input]"
+              name="Remove Null CustID"
+              startId="Package\DFT Load ODS_OnlineRetail\CDS - Non Null CustomerID.Outputs[Remove Null CustID]" />
+            <path
+              refId="Package\DFT Load ODS_OnlineRetail.Paths[Union All Output 1]"
+              endId="Package\DFT Load ODS_OnlineRetail\OLE_DST - ErrorLog.Inputs[OLE DB Destination Input]"
+              name="Union All Output 1"
+              startId="Package\DFT Load ODS_OnlineRetail\Union All.Outputs[Union All Output 1]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Truncate - ODS_OnlineRetail"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tâche d'exécution de requêtes SQL"
+      DTS:DTSID="{830F4D37-0927-4749-8251-C804452158F6}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Truncate - ODS_OnlineRetail"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{6FDA07A8-5844-4B65-94FE-BA927AA3D2BF}"
+          SQLTask:BypassPrepare="False"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE dbo.ODS_OnlineRetail" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Contrainte]"
+      DTS:CreationName=""
+      DTS:DTSID="{CEAC6106-324A-4B22-9FE8-C6973687DF7C}"
+      DTS:From="Package\Truncate - ODS_OnlineRetail"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Contrainte"
+      DTS:To="Package\DFT Load ODS_OnlineRetail" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Cette section CDATA contient des informations sur la disposition du package. Elle comprend des informations telles que les coordonnées (x,y), la largeur et la hauteur.-->
+<!--Si vous modifiez manuellement cette section et commettez une erreur, vous pouvez la supprimer. -->
+<!--Le package pourra toujours se charger normalement, mais les informations de disposition précédente seront perdues et le concepteur réorganisera automatiquement les éléments sur l'aire de conception.-->
+<Objects
+  Version="8">
+  <!--Chaque nœud ci-dessous contiendra des propriétés qui n'affectent pas le comportement d'exécution.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="217.333333333334,42.6666666666667"
+          Id="Package\DFT Load ODS_OnlineRetail"
+          TopLeft="102.499995417893,167.631577106806" />
+        <NodeLayout
+          Size="218.666666666667,42.6666666666667"
+          Id="Package\Truncate - ODS_OnlineRetail"
+          TopLeft="104.999995306134,43.1052626846075" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Contrainte]"
+          TopLeft="212.749995362014,85.7719293512741">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,81.8596477555323"
+              Start="0,0"
+              End="0,74.3596477555323">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,74.3596477555323" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\DFT Load ODS_OnlineRetail">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="201.333333333334,42.6666666666667"
+          Id="Package\DFT Load ODS_OnlineRetail\DCNV - CustmerID to INT"
+          TopLeft="126.599696721505,325.336463720543" />
+        <NodeLayout
+          Size="225.333333333334,42.6666666666667"
+          Id="Package\DFT Load ODS_OnlineRetail\OLE_DST - ODS_OnlineRetail"
+          TopLeft="116.019340051627,658.308263992359" />
+        <NodeLayout
+          Size="122.666666666667,42.6666666666667"
+          Id="Package\DFT Load ODS_OnlineRetail\Union All"
+          TopLeft="516.132046010625,316.805457996965" />
+        <NodeLayout
+          Size="160,42.6666666666667"
+          Id="Package\DFT Load ODS_OnlineRetail\DCNV - Resizing"
+          TopLeft="140.401779437837,563.032579339403" />
+        <NodeLayout
+          Size="224,42.6666666666667"
+          Id="Package\DFT Load ODS_OnlineRetail\OLE_SRC - STA_OnlineRetail"
+          TopLeft="125.424101535963,81.5676682773354" />
+        <NodeLayout
+          Size="184,42.6666666666667"
+          Id="Package\DFT Load ODS_OnlineRetail\DER - Add Total Price"
+          TopLeft="142.658723781388,445.915199782301" />
+        <NodeLayout
+          Size="212,42.6666666666667"
+          Id="Package\DFT Load ODS_OnlineRetail\CDS - Non Null CustomerID"
+          TopLeft="137.968747967389,212.096489759377" />
+        <NodeLayout
+          Size="178.666666666667,42.6666666666667"
+          Id="Package\DFT Load ODS_OnlineRetail\OLE_DST - ErrorLog"
+          TopLeft="747.857112362981,261.303255276305" />
+        <EdgeLayout
+          Id="Package\DFT Load ODS_OnlineRetail.Paths[Union All Output 1]"
+          TopLeft="638.798712677292,338.138791330298">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="109.058399685689,-55.5022027206598"
+              Start="0,0"
+              End="101.558399685689,-55.5022027206598">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="50.5291998428445,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="50.5291998428445,0"
+                    Point2="54.5291998428445,0"
+                    Point3="54.5291998428445,-4" />
+                  <mssgle:LineSegment
+                    End="54.5291998428445,-51.5022027206598" />
+                  <mssgle:CubicBezierSegment
+                    Point1="54.5291998428445,-51.5022027206598"
+                    Point2="54.5291998428445,-55.5022027206598"
+                    Point3="58.5291998428445,-55.5022027206598" />
+                  <mssgle:LineSegment
+                    End="101.558399685689,-55.5022027206598" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT Load ODS_OnlineRetail.Paths[Remove Null CustID]"
+          TopLeft="243.968747967389,254.763156426044">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-16.7023845792168,70.5733072944988"
+              Start="0,0"
+              End="-16.7023845792168,63.0733072944988">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,31.2866536472494" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,31.2866536472494"
+                    Point2="0,35.2866536472494"
+                    Point3="-4,35.2866536472494" />
+                  <mssgle:LineSegment
+                    End="-12.7023845792168,35.2866536472494" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-12.7023845792168,35.2866536472494"
+                    Point2="-16.7023845792168,35.2866536472494"
+                    Point3="-16.7023845792168,39.2866536472494" />
+                  <mssgle:LineSegment
+                    End="-16.7023845792168,63.0733072944988" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-53.0924032271084,40.2866536472494,89.482421875,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT Load ODS_OnlineRetail.Paths[OLE DB Source Output]"
+          TopLeft="201.424101535963,124.234334944002">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="42.5446464314254,87.862154815375"
+              Start="0,0"
+              End="42.5446464314254,80.362154815375">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,31.5187434360027" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,31.5187434360027"
+                    Point2="0,35.5187434360027"
+                    Point3="4,35.5187434360027" />
+                  <mssgle:LineSegment
+                    End="38.5446464314254,35.5187434360027" />
+                  <mssgle:CubicBezierSegment
+                    Point1="38.5446464314254,35.5187434360027"
+                    Point2="42.5446464314254,35.5187434360027"
+                    Point3="42.5446464314254,39.5187434360027" />
+                  <mssgle:LineSegment
+                    End="42.5446464314254,80.362154815375" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT Load ODS_OnlineRetail.Paths[Derived Column Output]"
+          TopLeft="234.658723781388,488.581866448968">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-39.5902776768844,74.4507128904349"
+              Start="0,0"
+              End="-39.5902776768844,66.9507128904349">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,40.2281462715455" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,40.2281462715455"
+                    Point2="0,44.2281462715455"
+                    Point3="-4,44.2281462715455" />
+                  <mssgle:LineSegment
+                    End="-35.5902776768844,44.2281462715455" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-35.5902776768844,44.2281462715455"
+                    Point2="-39.5902776768844,44.2281462715455"
+                    Point3="-39.5902776768844,48.2281462715455" />
+                  <mssgle:LineSegment
+                    End="-39.5902776768844,66.9507128904349" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT Load ODS_OnlineRetail.Paths[Derived Column Error Output]"
+          TopLeft="263.992057114721,445.915199782301">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="332.584433340348,-86.44307511867"
+              Start="0,0"
+              End="332.584433340348,-78.94307511867">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,-38.9928521754232" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,-38.9928521754232"
+                    Point2="0,-42.9928521754232"
+                    Point3="4,-42.9928521754232" />
+                  <mssgle:LineSegment
+                    End="328.584433340348,-42.9928521754232" />
+                  <mssgle:CubicBezierSegment
+                    Point1="328.584433340348,-42.9928521754232"
+                    Point2="332.584433340348,-42.9928521754232"
+                    Point3="332.584433340348,-46.9928521754232" />
+                  <mssgle:LineSegment
+                    End="332.584433340348,-78.94307511867" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="101.330829951424,-37.9928521754232,129.9227734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT Load ODS_OnlineRetail.Paths[Data Conversion Output1]"
+          TopLeft="220.401779437837,605.69924600607">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="8.28422728045635,52.6090179862889"
+              Start="0,0"
+              End="8.28422728045635,45.1090179862889">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22.3045089931445" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,22.3045089931445"
+                    Point2="0,26.3045089931445"
+                    Point3="4,26.3045089931445" />
+                  <mssgle:LineSegment
+                    End="4.28422728045635,26.3045089931445" />
+                  <mssgle:CubicBezierSegment
+                    Point1="4.28422728045635,26.3045089931445"
+                    Point2="8.28422728045635,26.3045089931445"
+                    Point3="8.28422728045635,30.3045089931445" />
+                  <mssgle:LineSegment
+                    End="8.28422728045635,45.1090179862889" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT Load ODS_OnlineRetail.Paths[Data Conversion Output]"
+          TopLeft="227.266363388172,368.003130387209">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-21.9409729401171,77.9120693950922"
+              Start="0,0"
+              End="-21.9409729401171,70.4120693950922">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,42.3442481746669" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,42.3442481746669"
+                    Point2="0,46.3442481746669"
+                    Point3="-4,46.3442481746669" />
+                  <mssgle:LineSegment
+                    End="-17.9409729401171,46.3442481746669" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-17.9409729401171,46.3442481746669"
+                    Point2="-21.9409729401171,46.3442481746669"
+                    Point3="-21.9409729401171,50.3442481746669" />
+                  <mssgle:LineSegment
+                    End="-21.9409729401171,70.4120693950922" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT Load ODS_OnlineRetail.Paths[Data Conversion Error Output1]"
+          TopLeft="245.73511277117,563.032579339403">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="312.619155461677,-203.560454675772"
+              Start="0,0"
+              End="312.619155461677,-196.060454675772">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,-97.4038609399117" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,-97.4038609399117"
+                    Point2="0,-101.403860939912"
+                    Point3="4,-101.403860939912" />
+                  <mssgle:LineSegment
+                    End="308.619155461677,-101.403860939912" />
+                  <mssgle:CubicBezierSegment
+                    Point1="308.619155461677,-101.403860939912"
+                    Point2="312.619155461677,-101.403860939912"
+                    Point3="312.619155461677,-105.403860939912" />
+                  <mssgle:LineSegment
+                    End="312.619155461677,-196.060454675772" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="90.2231910120885,-96.4038609399117,132.1727734375,11.43359375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT Load ODS_OnlineRetail.Paths[Data Conversion Error Output]"
+          TopLeft="327.933030054838,346.669797053876">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="188.199015955787,-8.53100572357783"
+              Start="0,0"
+              End="180.699015955787,-8.53100572357783">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="90.0995079778934,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="90.0995079778934,0"
+                    Point2="94.0995079778934,0"
+                    Point3="94.0995079778934,-4" />
+                  <mssgle:LineSegment
+                    End="94.0995079778934,-4.53100572357783" />
+                  <mssgle:CubicBezierSegment
+                    Point1="94.0995079778934,-4.53100572357783"
+                    Point2="94.0995079778934,-8.53100572357783"
+                    Point3="98.0995079778934,-8.53100572357783" />
+                  <mssgle:LineSegment
+                    End="180.699015955787,-8.53100572357783" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="28.0131212591434,1,132.1727734375,11.43359375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT Load ODS_OnlineRetail\OLE_DST - ODS_OnlineRetail">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT Load ODS_OnlineRetail\OLE_SRC - STA_OnlineRetail">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT Load ODS_OnlineRetail\OLE_DST - ErrorLog">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

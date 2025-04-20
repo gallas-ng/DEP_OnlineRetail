@@ -1,0 +1,12 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="localhost.DEP_ADM"
+  DTS:DTSID="{7A45CB77-157C-47AE-8598-AC0BA6FB1B6B}"
+  DTS:CreationName="OLEDB">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectRetryCount="1"
+      DTS:ConnectRetryInterval="5"
+      DTS:ConnectionString="Data Source=localhost;Initial Catalog=DEP_ADM;Provider=SQLNCLI11.1;Integrated Security=SSPI;Application Name=SSIS-DEP_OnlineRetail-{7A45CB77-157C-47AE-8598-AC0BA6FB1B6B}localhost.DEP_ADM;Auto Translate=False;" />
+  </DTS:ObjectData>
+</DTS:ConnectionManager>

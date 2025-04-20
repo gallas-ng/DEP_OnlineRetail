@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35825.156 d17.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{C9674DCB-5085-4A16-B785-4C70DD1589BD}") = "DEP_OnlineRetail", "DEP_OnlineRetail.dtproj", "{D50A8C10-D6D9-35A3-0995-05B6BF415E1B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Development|Default = Development|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D50A8C10-D6D9-35A3-0995-05B6BF415E1B}.Development|Default.ActiveCfg = Development
+		{D50A8C10-D6D9-35A3-0995-05B6BF415E1B}.Development|Default.Build.0 = Development
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A7AA83F3-832D-40E4-9C26-6EF6FBD972D2}
+	EndGlobalSection
+EndGlobal
