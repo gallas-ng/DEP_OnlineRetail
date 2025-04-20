@@ -4,7 +4,7 @@
 
 This project demonstrates the design and implementation of a **Data Warehouse (DWH)** solution for an online retail business using **SQL Server Integration Services (SSIS)** and **SQL**. The goal is to build a robust ETL pipeline to process raw transactional data, transform it into structured star schema tables, and enable meaningful insights through data analysis.
 
-*Do not hesitate to read the report for deeper exploration.*
+*Do not hesitate to read the report (/Support/Project_Report) for deeper exploration.*
 
 ---
 
@@ -113,7 +113,7 @@ This project demonstrates the design and implementation of a **Data Warehouse (D
 
 ## 📁 Setup Instructions
 
-1. Create the `STA`, `ODS`, `ADM` and `DWH` databases with the Scripts folder.
+1. Create the `STA`, `ODS`, `ADM` and `DWH` databases with the /Support/Scripts folder.
 2. Run the provided SQL script to create tables with `IF NOT EXISTS` logic.
 3. Configure and run your SSIS packages in the following order:
    - Load CSV → `ODS_OnlineRetail`
