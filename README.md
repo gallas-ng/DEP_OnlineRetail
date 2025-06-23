@@ -2,7 +2,7 @@
 
 ## 📚 Project Overview
 
-This project demonstrates the design and implementation of a **Data Warehouse (DWH)** solution for an online retail business using **SQL Server Integration Services (SSIS)** and **SQL**. The goal is to build a robust ETL pipeline to process raw transactional data, transform it into structured star schema tables, and enable meaningful insights through data analysis.
+This project demonstrates the design and implementation of a **Data Warehouse (DWH)** solution for an online retail business using **SQL Server Integration Services (SSIS)** and **SQL**. The goal is to build a robust ETL pipeline to process raw transactional data, transform it into structured star schema tables, and enable meaningful insights through data analysis. An interactive dashboard has also been created for the star schema using **Power BI** to explore key business insights.
 
 *Do not hesitate to read the report for deeper exploration.*
 
@@ -63,6 +63,30 @@ This project demonstrates the design and implementation of a **Data Warehouse (D
 
 ---
 
+## 📊 Power BI Dashboard Integration
+
+As an extension of the ETL project, I developed an interactive **Power BI dashboard** to visualize and explore key business insights derived from the cleaned retail dataset. The dashboard provides dynamic and intuitive charts to help stakeholders make data-driven decisions.
+
+[![View Power BI Dashboard](https://img.shields.io/badge/Power%20BI-View%20Online-blue?logo=powerbi)](https://app.powerbi.com/links/mbpyGuav0I?ctid=e5d15069-41a2-48be-a3f3-d7f52db16425&pbi_source=linkShare&bookmarkGuid=93b9d86e-9462-46cd-bfe8-90b1b89eae77)
+
+### 🔍 What’s Included in the Dashboard?
+
+- 📅 **Monthly Sales Trends** – Line charts to monitor revenue fluctuations over time.
+- 🌍 **Geo Sales Map** – Geographic heatmap to identify top-performing countries.
+- 👤 **Top Customers** – A leaderboard showcasing high-value customers.
+- 📦 **Top Products** – Insights into product performance by units sold and revenue.
+- 🧮 **KPIs** – Total Revenue, Average Order Value, Number of Orders, etc.
+
+### 🖼️ Screenshots
+
+#### Overview Dashboard
+![Dashboard Overview](PowerBI/Bi-Dashboard.png)
+
+#### Geo Sales Map
+![Geo Sales Map](PowerBI/Bi-Map.png)
+
+---
+
 ## 📊 Analytical Insights
 
 ### ✅ Monthly Sales Trend
@@ -73,14 +97,14 @@ This project demonstrates the design and implementation of a **Data Warehouse (D
 | 2010 | 12    | 572,698.89         |
 | 2011 | 11    | 1,161,787.38       |
 
-### ✅ Top 5 Countries by Revenue
+### ✅ Top Countries by Revenue
 
 | Country         | Total Revenue     |
 |------------------|------------------|
 | United Kingdom   | 7,308,226.55     |
 | Netherlands      | 285,446.34       |
 
-### ✅ Top 10 Customers
+### ✅ Top Customers
 
 | CustomerID | TotalSpent |
 |------------|------------|
@@ -108,7 +132,7 @@ This project demonstrates the design and implementation of a **Data Warehouse (D
 - **SQL Server Integration Services (SSIS)**
 - **T-SQL**
 - **Microsoft Excel** (source data)
-
+- **PowerBI**
 ---
 
 ## 📁 Setup Instructions
